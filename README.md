@@ -11,63 +11,62 @@ Done By:
 
 Tatazi Xhuliano – 0574551
 
-Table of Contents
 
 # Table of Contents
 
 [Abstract 3](#_Toc84410537)
 
-**[ProjectSteps 4](#_Toc84410538)**
+**[ProjectSteps](#_Toc84410538)**
 
-[ProjectPlanning 4](#_Toc84410539)
+[ProjectPlanning](#_Toc84410539)
 
-[Project Implementation 4](#_Toc84410540)
+[Project Implementation](#_Toc84410540)
 
-[Project Delivery 4](#_Toc84410541)
+[Project Delivery](#_Toc84410541)
 
-**[Theoretical Observations 5](#_Toc84410542)**
+**[Theoretical Observations](#_Toc84410542)**
 
-[PPG Signal 5](#_Toc84410543)
+[PPG Signal](#_Toc84410543)
 
-[Heart Rate 5](#_Toc84410544)
+[Heart Rate](#_Toc84410544)
 
-[Robust Peak Detection Algorithm (RPD) 6](#_Toc84410545)
+[Robust Peak Detection Algorithm (RPD)](#_Toc84410545)
 
-[Mountaineer&#39;s Method for Peak Detection (MMPD) 6](#_Toc84410546)
+[Mountaineer&#39;s Method for Peak Detection (MMPD)](#_Toc84410546)
 
-[Finite State Machine (FSM) 7](#_Toc84410547)
+[Finite State Machine (FSM)](#_Toc84410547)
 
-**[Hardware 8](#_Toc84410548)**
+**[Hardware](#_Toc84410548)**
 
-[PSoC 6 8](#_Toc84410549)
+[PSoC 6](#_Toc84410549)
 
-[PPG EduKit 9](#_Toc84410550)
+[PPG EduKit](#_Toc84410550)
 
-[LED Driver 11](#_Toc84410551)
+[LED Driver](#_Toc84410551)
 
-[ADC (Analog-to-Digital Converter) 11](#_Toc84410552)
+[ADC (Analog-to-Digital Converter)](#_Toc84410552)
 
-[UART (Universal Asynchronous Receiver-Transmitter) 12](#_Toc84410553)
+[UART (Universal Asynchronous Receiver-Transmitter)](#_Toc84410553)
 
-[I2C (Inter-Integrated Circuit) 12](#_Toc84410554)
+[I2C (Inter-Integrated Circuit)](#_Toc84410554)
 
-**[Software 12](#_Toc84410555)**
+**[Software](#_Toc84410555)**
 
-[PSoC Creator 12](#_Toc84410556)
+[PSoC Creator](#_Toc84410556)
 
-[LED Driver 13](#_Toc84410557)
+[LED Driver](#_Toc84410557)
 
-[Temperature Sensor 13](#_Toc84410558)
+[Temperature Sensor](#_Toc84410558)
 
-[Heart Rate 14](#_Toc84410559)
+[Heart Rate](#_Toc84410559)
 
-**[Conclusion 16](#_Toc84410560)**
+**[Conclusion](#_Toc84410560)**
 
-**[Output 16](#_Toc84410561)**
+**[Output](#_Toc84410561)**
 
-**[Problems and Difficulties Encountered 18](#_Toc84410562)**
+**[Problems and Difficulties Encountered](#_Toc84410562)**
 
-**[References 19](#_Toc84410563)**
+**[References](#_Toc84410563)**
 
 ## Abstract
 
@@ -102,13 +101,13 @@ The implementation of the project had the most difficult part, it started on the
 
 ### Project Delivery
 
-Thedeliveryofthe projectwas supposedtobe acompleteproductwhichwouldshowtheresults on the LCD display mounted to the PPG EduKit. We had difficulties in adapting C++ language to PSoC Creator so we couldn&#39;t use the display, but we implemented an algorithm for the peak detection of the signal and retrieved information from the temperature sensor and transmitted the data via BLE. The LEDs are also controllable remotely with BLE but with some minimal restrictions due to lack of information about the LEDDriver.
+The delivery of the project was supposed to be a complete product which would show the results on the LCD display mounted to the PPG EduKit. We had difficulties in adapting C++ language to PSoC Creator so we couldn&#39;t use the display, but we implemented an algorithm for the peak detection of the signal and retrieved information from the temperature sensor and transmitted the data via BLE. The LEDs are also controllable remotely with BLE but with some minimal restrictions due to lack of information about the LEDDriver.
 
 # Theoretical Observations
 
 ### PPG Signal
 
-Asmentionedbefore,inourprojectwehavetousethePPGsignaltocalculatetheHR(HeartRate) and SpO2 (Blood Oxygen Saturation). These two measurements are done independently from each other but both from the PPG signal. This signal is acquired by the current that the photodetector generates by absorbing lights from the LED. The current generated it&#39;s composed by two different components, AC that stands for Alternating Current and DC which stands for Direct Current. These two currents compose the graph of the PPG Signal with the help of a bar graph. The AC component is relatedtovariationsofbloodvolume insynchronizationwiththeheartbeat, asfortheDCcomponent we understood that it shows minor changes related to respiration that is caused by optical signals reflectedortransmittedbythetissue.Thiskindofsignaliswidelyusedintodaytechnologyandmostly in wearable embedded devices which we use in our everyday life [4],[5].
+As mentioned before, in our project we have to use the PPG signal to calculate the HR (Heart Rate) and SpO2 (Blood Oxygen Saturation). These two measurements are done independently from each other but both from the PPG signal. This signal is acquired by the current that the photodetector generates by absorbing lights from the LED. The current generated it&#39;s composed by two different components, AC that stands for Alternating Current and DC which stands for Direct Current. These two currents compose the graph of the PPG Signal with the help of a bar graph. The AC component is related to variations of blood volume in synchronization with the heart beat, as for the DC component we understood that it shows minor changes related to respiration that is caused by optical signals reflected or transmitted by the tissue. This kind of signal is widely used in today technology and mostly in wearable embedded devices which we use in our everyday life [4],[5].
 
 ![](RackMultipart20211006-4-w5iuf7_html_d5c831c361172621.png)
 
@@ -116,9 +115,7 @@ _Figure __1:__ Mathematical __model__ of __a__ pure __PPG__ signal__[9]_
 
 ### Heart Rate
 
-The heart rate is a very important in medical observations and mostly to know when a patient cardiovascular system is performing as it should. The heart rate can be measured in the peripheral circulation of the body (ear lobe, finger, chest, etc.) and it should be a really precise measurement that updates over time. For measuring there are various techniques in today&#39;s technology. The PPG and ECG signals are mostly used, with the PPG EduKit we have different filters for the signal that will beexplainedlateron.FromthePPGWaveformwehavetoanalyzetheACcomponentaswesaidthat
-
-it is in synchronization with the heartbeat.[10] So, we have to follow some steps to calculate it, generally said we should:
+The heart rate is a very important in medical observations and mostly to know when a patient cardiovascular system is performing as it should. The heart rate can be measured in the peripheral circulation of the body (ear lobe, finger, chest, etc.) and it should be a really precise measurement that updates over time. For measuring there are various techniques in today&#39;s technology. The PPG and ECG signals are mostly used, with the PPG EduKit we have different filters for the signal that will beexplainedlateron.From the PPG Wave form we have to analyze the AC component as we said that it is in synchronization with the heartbeat.[10] So, we have to follow some steps to calculate it, generally said we should:
 
 1. Start the device and get the PPG Filtered Signalvalues
 2. Make an algorithm that identifies and counts the peaks of thesignal
@@ -126,10 +123,10 @@ it is in synchronization with the heartbeat.[10] So, we have to follow some step
 
 SpO2
 
-AsfortheBloodOxygenSaturation,ithasadifferentwayofmeasurement.Tocalculateitweneed to configure the application for taking two different measurements in differentwavelengths:
+As for the Blood Oxygen Saturation, it has a different way of measurement. To calculate it we need to configure the application for taking two different measurements in different wavelengths:
 
-1. In the IR (Infra-Red) spectrum or 940nm wavelength forOxyhemoglobin
-2. In the Red-light spectrum or 660nm wavelength for theDeoxyhemoglobin
+1. In the IR (Infra-Red) spectrum or 940nm wavelength for Oxyhemoglobin
+2. In the Red-light spectrum or 660nm wavelength for the Deoxyhemoglobin
 
 To perform these calculations, we had to implement a runtime switching for the LED Driver in order to enable the two different outputs and a switch to indicate the start of the measurements. Then by making the ratio of the two outputs, we can get the absorption of light.
 
@@ -169,7 +166,7 @@ It is a low-cost device that supports BLE communications for IoT. The device is 
 
 _Figure 3: PSoC 6 Prototyping Board_
 
-The MCU is built with a dual-core architecture (150Mhz ARM Cortex M4 &amp; 100MHz Arm Cortex M0+ CPUs). It supports ultra-low-power (0.9V) and low-power (1.1V) modes and below that we have 1MBFlashmemoryanda288KbSRAMwithDMAcontroller.Theanalogblockismadeupby2opamps and 2 low power comparators, 12-bit SAR ADC and 12-bit DAC and the last component in the analog block is CapSense (Capacity sensing block). The digital block is made up of 12 UDB (universal digital blocks) and 32 TCPWM blocks (timer/counter/pulse-widthmodulator).
+The MCU is built with a dual-core architecture (150Mhz ARM Cortex M4 &amp; 100MHz Arm Cortex M0+ CPUs). It supports ultra-low-power (0.9V) and low-power (1.1V) modes and below that we have 1MB Flash memory and a 288Kb SRAM with DMAcontroller.The analog block is made up by 2 opamps and 2 low power comparators, 12-bit SAR ADC and 12-bit DAC and the last component in the analog block is CapSense (Capacity sensing block). The digital block is made up of 12 UDB (universal digital blocks) and 32 TCPWM blocks (timer/counter/pulse-widthmodulator).
 
 Regarding the communication interface of the PsoC6, it is made up of 8 serial communication blocks and 2 deep sleep serial communication blocks, I2S and PDM-PCM (Pulse-Density Modulation and Pulse-Code Modulation) converter + USB 2.0.
 
@@ -181,17 +178,11 @@ _Figure 4: PSOC 6 block diagram [3]_
 
 ### PPG EduKit
 
-ThePPGEduKitisadevicedesignedatVUBbytheETRODepartmentoftheFacultyofEngineering and is used to obtain the PPG signal using two different sensor setups, but in our case we used the one that obtains the signal through some analog modules with user-tunable analog conditioning stages, which use one photodetector and three different wavelengths (green, red and infrared) [8]. This setup will be explained in detail how does it work later in this chapter. On the PPG EduKit there isalsoaLCDdisplayforreal-timeplottingofthePPGsignalorthecalculatedheartrateandbloodrate saturation and a LED Driver that is used to power up the three different wavelengths on the LEDs analog module. Finally, it has a temperature sensor (MAX30205) to measure the temperature of the user and a generic push-button (SW1) and a RGB LED (neopixel), which can be programmed by the user asdesired.
+The PPG EduKit is a device designed at VUB by the ETRO Department of the Faculty of Engineering and is used to obtain the PPG signal using two different sensor setups, but in our case we used the one that obtains the signal through some analog modules with user-tunable analog conditioning stages, which use one photodetector and three different wavelengths (green, red and infrared) [8]. This setup will be explained in detail how does it work later in this chapter. On the PPG EduKit there is also a LCD display for real-time plotting of the PPG signal or the calculated heart rate and blood oxygen saturation and a LED Driver that is used to power up the three different wavelengths on the LEDs analog module. Finally, it has a temperature sensor (MAX30205) to measure the temperature of the user and a generic push-button (SW1) and a RGB LED (neopixel), which can be programmed by the user asdesired.
 
 The shape and pinout of the PPG EduKit is an Arduino lookalike, but it operates with a logic level voltage of 3V3 instead of 5V that usually Arduino microcontrollers use. A PSOC 6 prototyping board is connected underneath the PPG EduKit with an Arduino-to-PSOC6 bridge board.
 
-The current generated by the photodetector in the LEDs analog module is converted to voltage and amplified by the Transimpedance Amplifier (TIA) module, highlighted with green colorat Figure
-
-5. In the TIA module there is a 20KOhm potentiometer (blue box) and a 22 KOhm resistor R1, which areusedtoyieldthebestsignalqualityforREDandIRlight.AftertheTIAmodule,theamplifiedvoltage isfilteredfirstbyafirstorderhighband-passfilter(HPFmoduleshownwithyellowoutlineatFigure
-
-1. andthenbyalowband-passfilter(LPFmoduleshownwithpurpleoutlineatFigure5).Thisfiltering
-
-removes the noise and the DC (direct current) component. After the two filters, an inverting amplifier, highlighted with blue color at Figure 5, amplifies and inverts the denoised PPG signal [8].
+The current generated by the photodetector in the LEDs analog module is converted to voltage and amplified by the Transimpedance Amplifier (TIA) module, highlighted with green colorat Figure 5. In the TIA module there is a 20KOhm potentiometer (blue box) and a 22 KOhm resistor R1, which are used to yield the best signal quality for RED and IR light. After the TIA module, the amplified voltage is filtered first by a first order high band-passfilter(HPF module shown with yellow outline at Figure 1) and then by a low band-pass filter(LPF module shown with purple outline at Figure 5).Thisfiltering removes the noise and the DC (direct current) component. After the two filters, an inverting amplifier, highlighted with blue color at Figure 5, amplifies and inverts the denoised PPG signal [8].
 
 ![](RackMultipart20211006-4-w5iuf7_html_6bf11ad34d3bfb64.jpg)
 
@@ -205,7 +196,7 @@ _Figure 6: Analog conditioning stages of the analog module [8]_
 
 ### LED Driver
 
-TheTLC5925isourLEDDriverincorporatedwiththePPGEduKit.Thedriverconsistsof16outputs for LEDs, SDI (Serial-data Input to the Shift register), Clock, Latch Enable and Output Enable. This driver&#39;soutputswereconnectedtotheinputsoftheLEDblockcontainingthreedifferentLEDs,Green, Red and Infrared. the driver contains a 16-bit shift register that is loaded by the SDI. An external resistor was applied to the driver on the board of the PPG EduKit to modify the drivingcurrent [2].
+The TLC5925 is our LED Driver incorporated with the PPGEduKit. The driver consists of 16 outputs for LEDs, SDI (Serial-data Input to the Shift register), Clock, Latch Enable and Output Enable. This driver&#39;s outputs were connected to the inputs of the LED block containing three different LEDs, Green, Red and Infrared. The driver contains a 16-bit shift register that is loaded by the SDI. An external resistor was applied to the driver on the board of the PPG EduKit to modify the drivingcurrent [2].
 
 ### ADC (Analog-to-Digital Converter)
 
@@ -241,7 +232,7 @@ For our project we had to use PSoC Creator since it&#39;s the most suitable IDE 
 
 ### LED Driver
 
-TheLEDDriverwasaboutthethreedifferentLEDs(Green,Red,IR).Inorderforthedrivertowork weneedaclockbecauseitusestherisingedgefortheSDI input.TheSDI inputistheonethatdefines by using HIGH/LOW values on the rising edge of the clock, which of the outputs will be enabled but thisisnotall.Afterwe havepassedthe signalthroughSDIwe haveto confirmitwiththelatchenable pinbychangingitsvaluefromLOWtoHIGHandthenagaintoLOW,afterconfirmingtheregistershift we have to enable the defined outputs by pulling LOW the output enable pin[2].
+The LED Driver was about the three different LEDs (Green,Red,IR). In order for the driver to work we need a clock because it uses the rising edge for the SDI input. The SDI input is the one that defines by using HIGH/LOW values on the rising edge of the clock, which of the outputs will be enabled but thisisnotall.After we have passed the signal through SDI, we have to confirm it with the latch enable pin by changing its value from LOW to HIGH and then again to LOW, after confirming the register shift we have to enable the defined outputs by pulling LOW the output enable pin[2].
 
 ![](RackMultipart20211006-4-w5iuf7_html_21babf2d02cf6b00.png)
 
@@ -405,7 +396,7 @@ Along the way of developing the application for the device we encountered a lot 
 
 1. Understanding how to start our project, meaning what were the first steps we had totake
 2. Intensive learning of the Clanguage.
-3. ProblemswiththedevicecomponentsliketheLEDDriverwhichwecouldn&#39;tfigureouthowit works,thislimitedthedevicefunctionalitysinceitdoesnotallowtoturnontheLEDsina differentorderotherthanRED \&gt;\&gt; Green \&gt;\&gt; IR.
+3. Problems with the device components like the LED Driver which we couldn&#39;t figure out how it works,this limited the device functionality since it does not allow to turn on the LEDs in a different order other than RED \&gt;\&gt; Green \&gt;\&gt; IR.
 4. Problems with the BLE protocols and services, in order to understand how the stack worked and how the BLE task behaved it required an intensive debugging of thecode.
 5. Understanding the conversion of different formats like from a 16-bit integer to an 8-bit integer and the conversion of different values to HEX format in order to pass the values to the BLE stack.
 6. Finding the right parameters for specific services and specific functions which required a lot of tests andtrials.
