@@ -9,64 +9,7 @@ Date: 22/06/2021
 
 Done By:
 
-Tatazi Xhuliano – 0574551
-
-
-# Table of Contents
-
-[Abstract 3](#_Toc84410537)
-
-**[ProjectSteps](#_Toc84410538)**
-
-[ProjectPlanning](#_Toc84410539)
-
-[Project Implementation](#_Toc84410540)
-
-[Project Delivery](#_Toc84410541)
-
-**[Theoretical Observations](#_Toc84410542)**
-
-[PPG Signal](#_Toc84410543)
-
-[Heart Rate](#_Toc84410544)
-
-[Robust Peak Detection Algorithm (RPD)](#_Toc84410545)
-
-[Mountaineer&#39;s Method for Peak Detection (MMPD)](#_Toc84410546)
-
-[Finite State Machine (FSM)](#_Toc84410547)
-
-**[Hardware](#_Toc84410548)**
-
-[PSoC 6](#_Toc84410549)
-
-[PPG EduKit](#_Toc84410550)
-
-[LED Driver](#_Toc84410551)
-
-[ADC (Analog-to-Digital Converter)](#_Toc84410552)
-
-[UART (Universal Asynchronous Receiver-Transmitter)](#_Toc84410553)
-
-[I2C (Inter-Integrated Circuit)](#_Toc84410554)
-
-**[Software](#_Toc84410555)**
-
-[PSoC Creator](#_Toc84410556)
-
-[LED Driver](#_Toc84410557)
-
-[Temperature Sensor](#_Toc84410558)
-
-[Heart Rate](#_Toc84410559)
-
-**[Conclusion](#_Toc84410560)**
-
-**[Output](#_Toc84410561)**
-
-**[Problems and Difficulties Encountered](#_Toc84410562)**
-
-**[References](#_Toc84410563)**
+Tatazi Xhuliano
 
 ## Abstract
 
