@@ -180,6 +180,7 @@ The LED Driver was about the three different LEDs (Green,Red,IR). In order for t
 ![](RackMultipart20211006-4-w5iuf7_html_21babf2d02cf6b00.png)
 
 _Figure 9: Timing diagram [2]_
+```
 
 voidshiftOut(uint16\_tulBitOrder,uint16\_tulVal)
 
@@ -212,6 +213,7 @@ Cy\_GPIO\_Write(SDI\_Port,SDI\_Num,output); Cy\_SysLib\_Delay(1); Cy\_GPIO\_Clr(
 }
 
 }
+```
 
 ### Temperature Sensor
 
@@ -225,7 +227,13 @@ Since we implemented the algorithm for the peak detection, we decided to use UAR
 
 _Figure 10: UART component on PSOC Creator&#39;s TopDesign (own processing)._
 
-![Shape1](RackMultipart20211006-4-w5iuf7_html_2ea072fe121bb05a.gif)//Potential valley has been found possible\_valley = true; value\_possible\_valley=sample[i-1]; possible\_val++;
+![Shape1](RackMultipart20211006-4-w5iuf7_html_2ea072fe121bb05a.gif)
+
+```
+
+//Potential valley has been found possible\_valley = true; 
+
+value\_possible\_valley=sample[i-1]; possible\_val++;
 
 }
 
@@ -290,6 +298,7 @@ filteredY[i] = 0.1 \* sample[i] + (1 - 0.1) \* filteredY[i-1]; avgFilter[i]=mean
 printf(&quot;Peaks: %d \r\n&quot;, beat); printf(&quot;PossiblePeaks: %d \r\n&quot;, possible\_beat); printf(&quot;EstimatedHeartRate:%d\r\n&quot;,7\*beat);
 
 _}_
+```
 
 The algorithm for the heart rate iterates over all the sample and it compares different consecutive values by measuring the standard deviation and mean of the moving window of the algorithm as mentioned in the RPD algorithm, it has qualities of the MMPD algorithm like the threshold which empirically increases with 6 times the number of steps going upward the slope. Each time the value increases, the algorithm waits for the decreasing part of the slope in order to define the peak value and set the flag of the expected upcoming valley. After the sample data is finished analyzing, the peaks found are printed along with the possible peaks and an estimated heart rate value.
 
@@ -344,12 +353,6 @@ Along the way of developing the application for the device we encountered a lot 
 5. Understanding the conversion of different formats like from a 16-bit integer to an 8-bit integer and the conversion of different values to HEX format in order to pass the values to the BLE stack.
 6. Finding the right parameters for specific services and specific functions which required a lot of tests andtrials.
 7. BLE stack problems like device disconnection because of FreeRTOS delaytimeout
-
--
-#### Projectdelivery
-
-1. Time limits for the projectdelivery
-2. Device functionalities that remained unused like the switch, NeoPixel, LCDDisplay
 
 # References
 
