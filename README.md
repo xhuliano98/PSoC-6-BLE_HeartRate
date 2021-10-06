@@ -192,25 +192,24 @@ uint16\_tmask\_MSB=0x8000;//1...(15)0 uint16\_tmask\_LSB=0x0001;//0(15)...1
 
 //TokeepLEDsoffwhileshiftingintoregister Cy\_GPIO\_Set(OE\_PORT,OE\_NUM);
 
-booloutput=false; for(i=0;i\&lt;16;i++)
+booloutput=false; 
+for(i=0;i\&lt;16;i++) {
 
-{
+ if(ulBitOrder==1){ output=ulVal&amp;mask\_MSB; ulVal=ulVal\&lt;\&lt;1;
 
-if(ulBitOrder==1){ output=ulVal&amp;mask\_MSB; ulVal=ulVal\&lt;\&lt;1;
+ }
 
-}
+else {
 
-else{
+ output=ulVal&amp;mask\_LSB; ulVal=ulVal\&gt;\&gt;1;
 
-output=ulVal&amp;mask\_LSB; ulVal=ulVal\&gt;\&gt;1;
-
-}
+ }
 
 Cy\_GPIO\_Set(CLK\_PORT,CLK\_NUM);
 
 Cy\_GPIO\_Write(SDI\_Port,SDI\_Num,output); Cy\_SysLib\_Delay(1); Cy\_GPIO\_Clr(CLK\_PORT,CLK\_NUM);
 
-}
+ }
 
 }
 ```
