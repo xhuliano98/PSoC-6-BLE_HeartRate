@@ -1,0 +1,7 @@
+C:\Users\xhuli\OneDrive\Documents\PSoC Creator\Final project\HR\HR\heart_rate.cydsn\heart_rate.cyprj|db6b31ca-d92a-4c40-a2a0-a031a4e20b17
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|7c7f7741-4634-4829-a4e8-bd432025429e
+C:\Users\xhuli\OneDrive\Documents\PSoC Creator\4.4\Downloads ( 4.4).cylib\Downloads ( 4.4).cyprj|7ba8c1dd-6ca5-4906-9f51-4c4577be643c
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|10486226-2505-4964-ae6d-4cfb84fba4db
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|c355c7aa-2b59-4f64-bb87-5dec58b2ca0f
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|347ada0d-93d7-4ad0-b0fc-417ee441ffba
+C:\Users\xhuli\OneDrive\Documents\PSoC Creator\Workspace03\CE217637_BLE_Find_Me01.cydsn\CE217637_BLE_Find_Me01.cyprj|1d9d40b8-ba81-42ad-b4e4-1f169c6a0359
